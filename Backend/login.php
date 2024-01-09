@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) && isset(
         $response->userid = $login_result['userid'];
         $response->role=$login_result['Role'];
         $response->Name=$login_result['Name'];
+        $response->Status=$login_result['Status'];
         $json_string = json_encode($response);
         http_response_code(200);
         echo $json_string;
@@ -31,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) && isset(
 
 function perform_login($conn, $email, $password)
 {
-    $select_query = "SELECT `Role`,`userid`,`Name` , `password` FROM user WHERE email = '$email' AND (ROLE=1 OR ROLE=-1) AND Password='$password'";
+     $select_query = "SELECT `Role`,`userid`,`Name` ,  `Status`, `password` FROM user WHERE email = '$email' AND (ROLE=1 OR ROLE=-1) AND Password='$password'";
     $stmt = $conn->query($select_query);  
 
     if (!$stmt) {
@@ -44,8 +45,9 @@ function perform_login($conn, $email, $password)
         $user = $stmt->fetch_assoc();
         $password1 = $user['password'];
 
+
         if ($password == $password1) {
-            return array('success' => true, 'userid' => $user['userid'],'Role'=> $user['Role'],'Name' => $user['Name']);
+            return array('success' => true, 'userid' => $user['userid'],'Role'=> $user['Role'],'Name' => $user['Name'],'Status'=>$user['Status']);
         } else {
             return false;
         }

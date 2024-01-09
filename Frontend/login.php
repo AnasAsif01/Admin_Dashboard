@@ -8,6 +8,8 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id"
 		content="128164564881-lshvcrii4itkec5ees305jlso9sua6gq.apps.googleusercontent.com">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
 
 	<title>Document</title>
 </head>
