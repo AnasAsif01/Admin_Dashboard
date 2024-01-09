@@ -53,7 +53,11 @@ $(document).ready( function () {
                 }
             ],
             processing: true,
-            serverSide: true
+            serverSide: true,
+            drawCallback: function (settings) {
+                var productsCount = pageInfo.recordsTotal;
+                console.log("Products Count:", productsCount);
+                },
         });   
     }
 
