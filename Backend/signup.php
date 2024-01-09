@@ -7,13 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name']) && isset($_PO
     $email = $_POST['email'];
     $role = $_POST['role'];
 
-    $insert_query = "INSERT INTO user (`Name`,`Email`,`Password`,`Role`) VALUE ('$name','$email','$password','$role')";
-    $result = mysqli_query($conn, $insert_query);
+    $check_query = "SELECT * FROM user WHERE Email='$email'";
+    $check_result = mysqli_query($conn, $check_query);
 
-    if ($result) {
-        echo $name . ' ' . $email . ' ' . $password . ' ' . $role . ' ';
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "EmailExists";
     } else {
-        echo "Signup Not Successfull.";
+        $insert_query = "INSERT INTO user (`Name`, `Email`, `Password`, `Role`) VALUE ('$name','$email','$password','$role')";
+        $result = mysqli_query($conn, $insert_query);
     }
+    
 }
 ?>
