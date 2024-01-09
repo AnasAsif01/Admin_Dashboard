@@ -2,16 +2,18 @@
 require("connection.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $users = getproducts($conn);
-    print_r($users);
+    $response = getInactiveUsersInfo($conn);
+    echo json_encode($response);
 }
 
-function getproducts($conn)
+function getInactiveUsersInfo($conn)
 {
-    $select_query = "SELECT * FROM user WHERE Status =-1 ";
+    $select_query = "SELECT * FROM user WHERE Status = -1";
     $result = mysqli_query($conn, $select_query);
-    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    return json_encode(array('data'=>$users));
-}
 
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $usersCount = count($users);
+
+    return array('data' => $users, 'recordsTotal' => $usersCount, 'recordsFiltered' => $usersCount);
+}
 ?>
