@@ -1,0 +1,2 @@
+# Admin-Dashboard
+ This is the dashboard of the admin and vendor for an ecommerce website where the frontend is in HTML, CSS and Javascript. I also have used the Bootstrap while making the frontend. The backend of this dashboard is in PHP. The database which I have used to make this dashboard is MySQL. All the code is modular and you will easily get the idea from the directory structure of the code.
